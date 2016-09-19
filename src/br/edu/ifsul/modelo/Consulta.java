@@ -7,11 +7,15 @@ package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author Luis
  */
+@Entity
+@Table(name = "consulta")
 public class Consulta implements Serializable{
     
     private Integer id;

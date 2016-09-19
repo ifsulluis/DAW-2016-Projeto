@@ -6,11 +6,15 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author Luis
  */
+@Entity
+@Table(name = "exame")
 public class Exame implements Serializable{
     
     private Integer id;

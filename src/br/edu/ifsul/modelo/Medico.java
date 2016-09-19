@@ -6,14 +6,31 @@
 package br.edu.ifsul.modelo;
 
 import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
  * @author Luis
  */
-public class Medico implements Serializable{
+@Entity
+@Table(name = "medico")
+public class Medico extends Paciente implements Serializable{
     
+    
+    @Length(max = 11, min = 11, message = "O CRM deve possuir {max} caracteres.")
+    @NotBlank(message = "Informe o CRM.")
+    @Column(name = "crm", length = 11, nullable = false)
     private String crm;
+    
+    @NotBlank(message = "O nome deve ser informado")
+    @Length(max = 50, message = "O nome não deve ter mais que {max} caracteres")
+    @Column(name = "nome", length = 50, nullable = false)
+    private String nome;
     
     public Medico(){
         
@@ -32,6 +49,53 @@ public class Medico implements Serializable{
     public void setCrm(String crm) {
         this.crm = crm;
     }
+    
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    
+     @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.crm);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Medico other = (Medico) obj;
+        if (!Objects.equals(this.crm, other.crm)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return crm;
+    }
+
+    
     
     
 }
