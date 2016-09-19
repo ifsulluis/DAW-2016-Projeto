@@ -8,9 +8,20 @@ package br.edu.ifsul.modelo;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -18,17 +29,46 @@ import javax.persistence.Table;
  */
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "paciente")
 public class Paciente implements Serializable{
     
-    @Id  
+    @Id
+    @SequenceGenerator(name = "seq_paciente",sequenceName = "seq_paciente_id", 
+            allocationSize = 1)
+    @GeneratedValue(generator = "seq_paciente", strategy = GenerationType.SEQUENCE)
     private Integer id;
+    
+    @NotBlank(message = "O nome deve ser informado")
+    @Length(max = 50, message = "O nome deve ter até {max} caracteres")
+    @Column(name = "nome", nullable = false, length = 50)
     private String nome;
+    
+    @NotNull(message = "O nascimento deve ser informado")
+    @Temporal(TemporalType.DATE)
+    @Column(name = "nascimento", nullable = false)
     private Calendar nascimento;
+    
+    @NotBlank(message = "O telefone deve ser informado")
+    @Length(max = 14, message = "O numero não deve ultrapassar {max} caracteres")
+    @Column(name = "telefone", nullable = false, length = 14)    
     private String telefone;
+    
+    @NotBlank(message = "O sexo deve ser informado")
+    @Length(max = 1, message = "O cep deve ter até {max} caracteres")
+    @Column(name = "sexo", nullable = false, length = 9)      
     private String sexo;
+    
+    @Length(max = 50, message = "O historico deve ter até {max} caracteres")
+    @Column(name = "historico", length = 50)    
     private String historico;
+    
+    @NotNull(message = "O peso deve ser informado")
+    @Column(name = "peso", nullable = false, columnDefinition = "decimal(12,2)")
     private Double peso;
+    
+    @NotNull(message = "A altura deve ser informado")
+    @Column(name = "altura", nullable = false, columnDefinition = "decimal(12,2)")
     private Double altura;
     
     public Paciente(){
