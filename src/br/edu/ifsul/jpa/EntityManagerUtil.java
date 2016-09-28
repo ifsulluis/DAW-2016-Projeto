@@ -16,7 +16,7 @@ public class EntityManagerUtil {
 
     public static EntityManager getEntityManager() {
         if (factory == null) {
-            factory = Persistence.createEntityManagerFactory("DAW-2016-1-5N1-ModelPU");
+            factory = Persistence.createEntityManagerFactory("DAW-2016-ProjetoPU");
         }
         if (em == null) {
             em = factory.createEntityManager();
