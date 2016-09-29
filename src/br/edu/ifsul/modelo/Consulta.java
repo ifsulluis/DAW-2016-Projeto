@@ -47,8 +47,8 @@ public class Consulta implements Serializable{
     private Calendar data;
     
     @NotNull(message = "A hora deve ser informado")
-    @Temporal(TemporalType.TIME)
-    @Column(name = "hora", nullable = false)
+    
+    @Column(name = "hora", nullable = false, columnDefinition = "time")
     private Calendar hora;
     
     @NotNull(message = "A pre consulta deve ser informado")

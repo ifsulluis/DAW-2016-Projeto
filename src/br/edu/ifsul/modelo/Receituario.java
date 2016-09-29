@@ -46,8 +46,8 @@ public class Receituario implements Serializable{
     private String posologia;
     
     @NotNull(message = "A validade deve ser informada")
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "validade", nullable = false)
+
+    @Column(name = "validade", nullable = false, columnDefinition = "time")
     private Calendar validade;
     
     @ManyToMany
