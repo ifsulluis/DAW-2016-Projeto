@@ -51,6 +51,7 @@ public class Consulta implements Serializable{
     @Column(name = "hora", nullable = false, columnDefinition = "time")
     private Calendar hora;
     
+    
     @NotNull(message = "A pre consulta deve ser informado")
     private String preconsulta;
     
