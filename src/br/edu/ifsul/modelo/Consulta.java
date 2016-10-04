@@ -173,6 +173,7 @@ public class Consulta implements Serializable{
     }
 
     
+    
     public List<Exame> getExames() {
         return exames;
     }
