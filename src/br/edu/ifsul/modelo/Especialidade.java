@@ -94,11 +94,6 @@ public class Especialidade implements Serializable{
         return true;
     }
 
-    @Override
-    public String toString() {
-        return descricao ;
-    }
-    
     
     
 }

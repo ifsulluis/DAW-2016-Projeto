@@ -34,8 +34,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Paciente implements Serializable{
     
     @Id
-    @SequenceGenerator(name = "seq_paciente",sequenceName = "seq_paciente_id", 
-            allocationSize = 1)
+    @SequenceGenerator(name = "seq_paciente",sequenceName = "seq_paciente_id", allocationSize = 1)
     @GeneratedValue(generator = "seq_paciente", strategy = GenerationType.SEQUENCE)
     private Integer id;
     
@@ -59,8 +58,8 @@ public class Paciente implements Serializable{
     @Column(name = "sexo", nullable = false, length = 9)      
     private String sexo;
     
-    @Length(max = 50, message = "O historico deve ter até {max} caracteres")
-    @Column(name = "historico", length = 50)    
+    
+    @Column(name = "historico")    
     private String historico;
     
     @NotNull(message = "O peso deve ser informado")

@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -27,10 +29,16 @@ public class Medico extends Paciente implements Serializable{
     @Column(name = "crm", length = 11, nullable = false)
     private String crm;
     
-    @NotBlank(message = "O nome deve ser informado")
-    @Length(max = 50, message = "O nome não deve ter mais que {max} caracteres")
-    @Column(name = "nome", length = 50, nullable = false)
-    private String nome;
+//    @NotBlank(message = "O nome deve ser informado")
+//    @Length(max = 50, message = "O nome não deve ter mais que {max} caracteres")
+//    @Column(name = "nome", length = 50, nullable = false)
+//    private String nome;
+    
+    @ManyToOne
+    @JoinColumn(name = "especialidade", referencedColumnName = "id", nullable = false)
+    private Especialidade especialidade;
+    
+    
     
     public Medico(){
         
@@ -53,47 +61,56 @@ public class Medico extends Paciente implements Serializable{
     /**
      * @return the nome
      */
-    public String getNome() {
-        return nome;
+//    public String getNome() {
+//        return nome;
+//    }
+//
+//    /**
+//     * @param nome the nome to set
+//     */
+//    public void setNome(String nome) {
+//        this.nome = nome;
+//    }
+    
+     public Especialidade getEspecialidade() {
+        return especialidade;
     }
 
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setEspecialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
     }
     
     
-     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.crm);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Medico other = (Medico) obj;
-        if (!Objects.equals(this.crm, other.crm)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return crm;
-    }
+    
+//     @Override
+//    public int hashCode() {
+//        int hash = 7;
+//        hash = 79 * hash + Objects.hashCode(this.crm);
+//        return hash;
+//    }
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if (obj == null) {
+//            return false;
+//        }
+//        if (getClass() != obj.getClass()) {
+//            return false;
+//        }
+//        final Medico other = (Medico) obj;
+//        if (!Objects.equals(this.crm, other.crm)) {
+//            return false;
+//        }
+//        return true;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return crm;
+//    }
 
     
     
